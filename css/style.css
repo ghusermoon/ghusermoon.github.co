@@ -975,8 +975,9 @@ svg:not(:root) {
 	overflow: hidden
 }
 
+/* 去掉边距 */
 figure {
-	margin: 1em 40px
+	margin: 0 !important;
 }
 
 hr {
@@ -8278,6 +8279,7 @@ progress {
 	display        : flex;
 	align-items    : center;
 	justify-content: flex-start;
+	padding: 0 !important;
 }
 
 .archive-container .al_post_list>li {
@@ -8286,6 +8288,17 @@ progress {
 	overflow     : hidden;
 	white-space  : nowrap;
 	margin       : 20px 0;
+}
+
+/* 小于600时垂直排列 */
+@media(max-width: 600px) {
+	.archive-container .al_post_list {
+		flex-direction: column;
+	}
+
+	.archive-container .al_post_list>li {
+		width: 90%;
+	}
 }
 
 .archive-container .al_post_list a {
@@ -9043,12 +9056,11 @@ a.toc-link {
 }
 
 .code pre {
-	margin    : 0;
-	padding   : 5px 10px;
-	background: #f8f5ec;
-	max-width : 600px;
-	min-width : 375px;
-	overflow-x: scroll;
+	margin     : 0 auto;
+	padding    : 5px 10px;
+	background : #f8f5ec;
+	white-space: pre-wrap;
+	overflow-x : scroll;
 }
 
 /* 拷贝按钮 */

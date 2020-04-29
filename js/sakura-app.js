@@ -618,6 +618,7 @@ function timeSeriesReload (flag) {
 		lazyload()
 	} else {
 		(function () {
+			// 添加经过图标
 			$('#al_expand_collapse,#archives span.al_mon').css({
 				cursor: 's-resize'
 			})
@@ -626,27 +627,30 @@ function timeSeriesReload (flag) {
 				var num = $(this).next().children('li').length
 				$(this).children('#post-month-num').text(num)
 			})
-			var $al_post_list = $('#archives ul.al_post_list'),
-				$al_post_list_f = $('#archives ul.al_post_list:first')
-			$al_post_list.hide(1, function () {
-				$al_post_list_f.show()
-			})
-			// $('#archives span.al_mon').click(function () {
-			// 	$(this).next().slideToggle(400)
-			// 	return false
+			// 归档 自动收起文章列表
+			// var $al_post_list = $('#archives ul.al_post_list'),
+			// 	$al_post_list_f = $('#archives ul.al_post_list:first')
+			// $al_post_list.hide(1, function () {
+			// 	$al_post_list_f.show()
 			// })
-			if (document.body.clientWidth > 860) {
-				$('#archives li.al_li').mouseover(function () {
-					$(this).children('.al_post_list').show(400)
-					return false
-				})
-				if (false) {
-					$('#archives li.al_li').mouseout(function () {
-						$(this).children('.al_post_list').hide(400)
-						return false
-					})
-				}
-			}
+			// 点击收起文章
+			$('#archives span.al_mon').click(function () {
+				$(this).next().slideToggle(400)
+				return false
+			})
+			// if (document.body.clientWidth > 860) {
+			// 	$('#archives li.al_li').mouseover(function () {
+			// 		$(this).children('.al_post_list').show(400)
+			// 		return false
+			// 	})
+			// 	if (false) {
+			// 		$('#archives li.al_li').mouseout(function () {
+			// 			$(this).children('.al_post_list').hide(400)
+			// 			return false
+			// 		})
+			// 	}
+			// }
+			// 点击全部收缩
 			// var al_expand_collapse_click = 0
 			// $('#al_expand_collapse').click(function () {
 			// 	if (al_expand_collapse_click == 0) {
