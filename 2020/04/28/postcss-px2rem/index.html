@@ -374,8 +374,13 @@
 <p>tips: 安装可能会出现错误，按照提示安装缺少的依赖即可。</p>
 <h2 id="在main-js中注册"><a href="#在main-js中注册" class="headerlink" title="在main.js中注册"></a>在main.js中注册</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-string">'lib-flexible'</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>在vue.config.js中配置，如果没有此文件需在项目的根目录自己新建。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>(1) 在vue.config.js中配置，如果没有此文件需在项目的根目录自己新建。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">module</span>.exports = &#123;<br>  css: &#123;<br>    loaderOptions: &#123;<br>      postcss: &#123;<br>        plugins: [<br>          <span class="hljs-built_in">require</span>(<span class="hljs-string">'postcss-px2rem'</span>)(&#123;<br>            <span class="hljs-comment">/* 以设计稿750为例， 750 / 10 = 75 */</span><br>            remUnit: <span class="hljs-number">75</span><br>          &#125;),<br>        ]<br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(2) 根据需求调整 node_modules/lib-flexible/flexible.js <code>refreshRem</code>函数中的数值</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">refreshRem</span> (<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">var</span> width = docEl.getBoundingClientRect().width;<br>  <span class="hljs-comment">/* 根据实际需求自行调整 */</span><br>  <span class="hljs-keyword">if</span> (width / dpr &lt; <span class="hljs-number">1200</span>) &#123;<br>    width = <span class="hljs-number">1200</span> * dpr;<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (width / dpr &gt; <span class="hljs-number">1920</span>) &#123;<br>    width = <span class="hljs-number">1920</span> * dpr;<br>  &#125;<br>  <span class="hljs-keyword">var</span> rem = width / <span class="hljs-number">10</span>;<br>  docEl.style.fontSize = rem + <span class="hljs-string">'px'</span>;<br>  flexible.rem = win.rem = rem;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
 <p><strong>注意：</strong><br /><br>(1) 由于flexible会动态给页面header中添加标签，所以务必请把目录 public/index.html 中的这个标签删除或注释！</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- &lt;meta name="viewport" content="width=device-width,initial-scale=1.0"&gt; --&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -415,10 +420,16 @@
 			<div class="toc" style="background: none;"></div>
 			<section class="post-squares nextprev">
 				
+				
+				<div class="post-nepre half previous">
+					
+						<a href="/2020/05/07/%E8%B7%A8%E5%9F%9F/" rel="prev" class="switch-articles">上一篇:跨域</a>
+					</div>
 					
 					
-						<div class="post-nepre full next">
-							
+					
+					<div class="post-nepre half next">
+						
 							<a href="/2020/04/28/vue-i18n/" rel="next" class="switch-articles">下一篇:vue-i18n</a>
 						</div>
 						
